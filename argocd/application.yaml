@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ai-rollout
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  source:
+    repoURL: https://github.com/Pratiks-96/ai-rollout.git
+    targetRevision: main
+    path: helm
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
