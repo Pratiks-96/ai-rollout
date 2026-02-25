@@ -1,0 +1,30 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ai-rollout-monitor
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: before
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 5s
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ai-rollout-monitor-after
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: after
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 5s
