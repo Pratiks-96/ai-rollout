@@ -3,18 +3,24 @@ kind: Application
 metadata:
   name: demo-app
   namespace: argocd
+
 spec:
   project: default
+
   source:
-    repoURL: 'https://github.com/Pratiks-96/ai-rollout.git'
+    repoURL: https://github.com/Pratiks-96/ai-rollout.git
     targetRevision: main
-    path: helm
+    path: helm/
+
+    helm:
+      valueFiles:
+        - values.yaml
+
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: default
+
   syncPolicy:
     automated:
-      prune: true        
-      selfHeal: true     
-    syncOptions:
-      - CreateNamespace=true
+      prune: true
+      selfHeal: true
