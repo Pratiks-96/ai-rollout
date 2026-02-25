@@ -17,9 +17,9 @@ jobs:
 
     - run: |
     
-        docker build -t  ${{ secrets.DOCKER_USERNAME }}/before:latest .services/before
+        docker build -t  ${{ secrets.DOCKER_USERNAME }}/before:latest ./services/before
         docker push ${{ secrets.DOCKER_USERNAME }}/before:latest
-        docker build -t  ${{ secrets.DOCKER_USERNAME }}/after:latest .services/after
+        docker build -t  ${{ secrets.DOCKER_USERNAME }}/after:latest ./services/after
         docker push ${{ secrets.DOCKER_USERNAME }}/after:latest 
-        docker build -t  ${{ secrets.DOCKER_USERNAME }}/ai-controller:latest .services/ai-controller
+        docker build -t  ${{ secrets.DOCKER_USERNAME }}/ai-controller:latest ./services/ai-controller
         docker push ${{ secrets.DOCKER_USERNAME }}/ai-controller:latest
