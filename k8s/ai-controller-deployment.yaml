@@ -16,6 +16,6 @@ spec:
       containers:
       - name: ai-controller
         image: pratik6958/ai-controller:latest
-        imagePullPolicy: Never
+
         ports:
         - containerPort: 8000
