@@ -3,7 +3,7 @@ import requests
 
 app = FastAPI()
 
-PROMETHEUS = "http://prometheus:9090"
+PROMETHEUS = "http://13.233.162.2:9090"
 
 
 def get_error_rate(metric):
