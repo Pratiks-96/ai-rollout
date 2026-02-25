@@ -1,0 +1,5 @@
+before:
+  image: pratik6958/before:latest
+
+after:
+  image: pratik6958/after:latest
