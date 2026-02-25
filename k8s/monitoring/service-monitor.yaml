@@ -28,3 +28,60 @@ spec:
   - port: http
     path: /metrics
     interval: 5s
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-demo
+  namespace: default
+spec:
+  selector:
+    app: ai-demo
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ai-rollout-monitor
+  namespace: default
+  labels:
+    release: kube-prometheus
+spec:
+  selector:
+    matchLabels:
+      app: ai-controller
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: httpapiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ai-rollout-monitor-after
+  namespace: default
+  labels:
+    release: kube-prometheus
+spec:
+  selector:
+    matchLabels:
+      app: ai-demo
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 5s
+      path: /metrics
+      interval: 5s
+
+---
+
+
