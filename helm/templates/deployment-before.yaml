@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: before
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: before
+  template:
+    metadata:
+      labels:
+        app: before
+    spec:
+      containers:
+      - name: before
+        image: {{ .Values.before.image }}
+        ports:
+        - containerPort: 8000
